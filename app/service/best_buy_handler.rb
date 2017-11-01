@@ -10,7 +10,7 @@ class BestBuyHandler
     JSON.parse(response.body)["stores"]
   end
 
-  private  
+  private
 
   def new_connection
     Faraday.new("https://api.bestbuy.com/v1/stores(area(#{@zip},25))") do |f|

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "user can access items" do
+RSpec.describe "user can access items" do
   scenario "and get all items" do
     item1 = Item.create(name: "sample1", description: "sample1", image_url: "sample1")
     item2 = Item.create(name: "sample2", description: "sample2", image_url: "sample2")
@@ -17,7 +17,7 @@ RSpec.feature "user can access items" do
     expect(result[0]["updated_at"]).to eq(nil)
   end
 
-  xscenario "and get a single item" do
+  scenario "and get a single item" do
     item1 = Item.create(name: "sample1", description: "sample1", image_url: "sample1")
     item2 = Item.create(name: "sample2", description: "sample2", image_url: "sample2")
 
@@ -32,7 +32,7 @@ RSpec.feature "user can access items" do
     expect(result["updated_at"]).to eq(nil)
   end
 
-  xscenario "and delete an item" do
+  scenario "and delete an item" do
     item1 = Item.create(name: "sample1", description: "sample1", image_url: "sample1")
     item2 = Item.create(name: "sample2", description: "sample2", image_url: "sample2")
 
@@ -43,7 +43,7 @@ RSpec.feature "user can access items" do
     expect(Item.first).to eq(item2)
   end
 
-  xscenario "and create an item" do
+  scenario "and create an item" do
     item1 = Item.new(name: "sample1", description: "sample1", image_url: "sample1")
 
     post("/api/v1/items")
