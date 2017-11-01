@@ -5,10 +5,8 @@ class BestBuyHandler
   end
 
   def initialize_stores
-    conn = new_connection
-    response = conn.get
-    stores = JSON.parse(response.body)
-    stores["stores"].reduce([]) do |output, store_info|
+    stores = get_stores["stores"]
+    stores.reduce([]) do |output, store_info|
       output << Store.new(name: store_info["longName"],
                           city: store_info["city"],
                           distance: store_info["distance"],
@@ -18,14 +16,21 @@ class BestBuyHandler
     end
   end
 
+  def get_stores
+    conn = new_connection
+    response = conn.get
+    JSON.parse(response.body)
+  end
+
   private
 
   def new_connection
-    Faraday.new("https://api.bestbuy.com/v1/stores(area(#{zip_code},25))") do |f|
+    Faraday.new("https://api.bestbuy.com/v1/stores(area(#{@zip},25))") do |f|
       f.adapter Faraday.default_adapter
-      f.params["format"] = "json"
-      f.params["show"] = "longName,city,distance,phone,storeType"
-      f.params["apiKey"]= ENV['api_key']
+      f.params["format"]   = "json"
+      f.params["show"]     = "longName,city,distance,phone,storeType"
+      f.params["apiKey"]   = Rails.application.secrets.api_key
+      f.params["pageSize"] = "100"
     end
   end
 

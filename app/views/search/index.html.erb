@@ -1,0 +1,12 @@
+<h1>Stores within 25 miles of <%= params[:search] %></h1>
+<h2><%= @stores.count %> Total Stores</h2>
+
+<% @stores[0..9].each do |store| %>
+<ul class="store">
+  <li>Name: <%= store.name %></li>
+  <li>City: <%= store.city %></li>
+  <li>Distance from Search: <%= store.distance %> miles</li>
+  <li>Phone Number: <%= store.phone_number %></li>
+  <li>Type: <%= store.type %></li>
+</ul>
+<% end %>

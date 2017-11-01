@@ -1,7 +1,8 @@
 class SearchController < ApplicationController
 
   def index
-    zip = params[:search]
+    bbh = BestBuyHandler.new(params[:search])
+    @stores = bbh.initialize_stores
   end
 
 end
