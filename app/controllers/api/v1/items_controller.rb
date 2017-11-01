@@ -25,4 +25,14 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    begin
+      item = Item.find(params[:id])
+      item.destroy
+      render json: { status: "item deleted" }
+    rescue
+      render json: { status: "invalid submission" }
+    end
+  end
+
 end
