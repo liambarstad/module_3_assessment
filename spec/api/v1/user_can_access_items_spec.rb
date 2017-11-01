@@ -28,6 +28,8 @@ RSpec.feature "user can access items" do
     expect(result["name"]).to eq(item1.name)
     expect(result["description"]).to eq(item1.description)
     expect(result["image_url"]).to eq(item1.image_url)
+    expect(result["created_at"]).to eq(nil)
+    expect(result["updated_at"]).to eq(nil)
   end
 
   xscenario "and delete an item" do
@@ -51,5 +53,7 @@ RSpec.feature "user can access items" do
     expect(result["name"]).to eq(item1.name)
     expect(result["description"]).to eq(item1.description)
     expect(result["image_url"]).to eq(item1.image_url)
+    expect(result["created_at"]).to eq(nil)
+    expect(result["updated_at"]).to eq(nil)
   end
 end
