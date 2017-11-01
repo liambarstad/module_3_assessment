@@ -8,7 +8,11 @@ RSpec.feature "user can search stores" do
 
     expect(current_path).to eq("/search")
     expect(page).to have_selector(".store", count: 10)
+    expect(page).to have_selector(".store_name", count: 10)
+    expect(page).to have_selector(".store_city", count: 10)
+    expect(page).to have_selector(".store_distance", count: 10)
+    expect(page).to have_selector(".store_phone", count: 10)
+    expect(page).to have_selector(".store_type", count: 10)
     expect(page).to have_content("17 Total Stores")
-    # And I should see the long name, city, distance, phone number and store type for each of the 10 results
   end
 end
