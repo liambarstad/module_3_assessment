@@ -19,7 +19,7 @@ class Api::V1::ItemsController < ApplicationController
                     description: params[:description],
                     image_url: params[:image_url])
     if item.save
-      render json: item, status: 204
+      render json: item
     else
       render json: { status: "invalid submission" }
     end
@@ -29,7 +29,7 @@ class Api::V1::ItemsController < ApplicationController
     begin
       item = Item.find(params[:id])
       item.destroy
-      render json: { status: "item deleted" }, status: 204
+      render json: { status: "item deleted" }
     rescue
       render json: { status: "invalid submission" }
     end
