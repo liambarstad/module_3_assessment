@@ -19,7 +19,7 @@ RSpec.feature "user can access items" do
     item1 = Item.create(name: "sample1", description: "sample1", image_url: "sample1")
     item2 = Item.create(name: "sample2", description: "sample2", image_url: "sample2")
 
-    get '/api/v1/items'
+    get('/api/v1/items')
     result = JSON.parse(response.body)
 
     expect(result.count).to eq(2)
