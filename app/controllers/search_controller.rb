@@ -10,14 +10,18 @@ class SearchController < ApplicationController
     stores = Store.create_from_response(search_results)
 
     @results_count = stores.count
-    @page = params[:page]
+    @page = params[:page].to_i
     paginate(stores, @page)
   end
 
   private
 
   def paginate(stores, page)
-    @stores = stores[((page - 1) * 10)..((page * 10) - 1)]
+    if stores[((page * 10) - 1)]
+      @stores = stores[((page - 1) * 10)..((page * 10) - 1)]
+    else
+      @stores = stores[((page - 1) * 10)..-1]
+    end
   end
 
 end

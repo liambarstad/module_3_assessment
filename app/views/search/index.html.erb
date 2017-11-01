@@ -10,3 +10,9 @@
     <li class="store_type">Type: <%= store.type %></li>
   </ul>
 <% end %>
+
+<% if @page > 1 %>
+  <%= link_to "Previous Page", search_index_path(search: params[:search], page: (@page.to_i - 1)) %>
+<% end %>
+
+<%= link_to "Next Page", search_index_path(search: params[:search], page: (@page.to_i + 1)) %>
